@@ -17,11 +17,17 @@ jobs:
         with:
           node-version: 18
 
+      # WAJIB: Install Dependencies
       - name: Install Dependencies
         run: npm install
+        working-directory: .  # <-- PERBAIKAN: Memastikan perintah npm berjalan di root
 
+      # WAJIB: Run Linter (Cek Kualitas Kode)
       - name: Run Linter (ESLint)
         run: npm run lint
+        working-directory: .  # <-- PERBAIKAN: Memastikan linter berjalan di root
 
+      # WAJIB: Run Unit Test
       - name: Run Unit Test (Jest)
         run: npm test
+        working-directory: .  # <-- PERBAIKAN: Memastikan unit test berjalan di root
