@@ -1,28 +1,22 @@
-import js from "@eslint/js";
 import globals from "globals";
-import { defineConfig } from "eslint/config";
+import js from "@eslint/js";
 
-export default defineConfig([
-  // Konfigurasi umum untuk semua file JS
+export default [
+  js.configs.recommended,
+
   {
-    files: ["**/*.{js,mjs,cjs}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    files: ["**/*.js"],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      }
+      ecmaVersion: "latest"
     }
   },
 
-  // Konfigurasi khusus untuk file test (Jest)
   {
-    files: ["_tests_/**/*.js", "**/*.test.js"],
+    files: ["tests/**/*.test.js"],
     languageOptions: {
       globals: {
-        ...globals.jest  // ⬅️ Bagian penting
+        ...globals.jest,
       }
     }
   }
-]);
+];
